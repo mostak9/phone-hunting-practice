@@ -7,9 +7,23 @@
     <!-- tailwind & daisyUI cdn -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- custom styles -->
+    <style>
+    .bg-primary {
+        background-color: rgba(13, 110, 253, 0.05);
+    }
+    </style>
   </head>
   <body>
-    <header></header>
+    <header class="bg-primary">
+        <!-- navigation section -->
+        <section class="max-w-7xl mx-auto py-4">
+            <div class="navbar flex justify-between">
+                <a class="btn btn-ghost normal-case text-2xl font-bold">Phone Hunter</a>
+                <button class="btn btn-primary">Sign Up</button>
+            </div>
+        </section>
+    </header>
     <main></main>
     <footer></footer>
     <script src="./scripts/phone.js"></script>
