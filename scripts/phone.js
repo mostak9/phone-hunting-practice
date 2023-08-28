@@ -24,7 +24,7 @@ const displayData = (phones, isShowClicked) =>  {
         showMoreContainer.classList.add('hidden');
     }
     cardContainer.innerHTML ='';
-    // console.log(phones);
+    console.log(phones);
     phones.forEach(phone => {
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card mx-4 lg:mx-0 bg-base-100 shadow-xl p-5`;
@@ -37,7 +37,7 @@ const displayData = (phones, isShowClicked) =>  {
             <p>There are many variations of passages of available, but the majority have suffered</p>
             <p class="text-3xl font-semibold">$999</p>
             <div class="card-actions">
-            <button class="btn btn-primary">Show Details</button>
+            <button onclick="show_detail.showModal(); showDetailModal('${phone.slug}')" class="btn btn-primary">Show Details</button>
             </div>
         </div>
         `
@@ -91,4 +91,30 @@ function showMore()  {
     loadData(searchText, true);
 }
 
+// show detail handler 
+const  showDetailModal = async (Id) => {
+    const res = await fetch(` https://openapi.programming-hero.com/api/phone/${Id}`);
+    const data = await res.json();
+    const phoneDetail = data.data
+    console.log(phoneDetail);
+    const modalContainer =  document.getElementById('modal-container');
+    modalContainer.innerHTML ='';
+    const modalDetails = document.createElement('div');
+    modalDetails.innerHTML = `
+    <div class="bg-primary text-center p-5 rounded-md flex justify-center items-center">
+    <img src="${phoneDetail?.image}"/>
+    </div>
+    <h3 class="font-bold text-3xl mt-4">${phoneDetail.name}</h3>
+    <p class="py-4 mb-4">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+    <p><span class="specification-title">Storage: </span><span class="specification-detail">${phoneDetail.mainFeatures.storage}</span></p>
+    <p><span class="specification-title">Display Size: </span><span class="specification-detail">${phoneDetail.mainFeatures.displaySize}</span></p>
+    <p><span class="specification-title">Chipset: </span><span class="specification-detail">${phoneDetail.mainFeatures.chipSet}</span></p>
+    <p><span class="specification-title">Memory: </span><span class="specification-detail">${phoneDetail.mainFeatures.memory}</span></p>
+    <p><span class="specification-title">Slug: </span><span class="specification-detail">${phoneDetail.slug}</span></p>
+    <p><span class="specification-title">Release Date: </span><span class="specification-detail">${phoneDetail.releaseDate}</span></p>
+    <p><span class="specification-title">Brand: </span><span class="specification-detail">${phoneDetail.brand}</span></p>
+    <p><span class="specification-title">GPS: </span><span class="specification-detail">${phoneDetail?.others?.GPS ? phoneDetail?.others?.GPS : 'Data not provided'}</span></p>
+    `
+    modalContainer.appendChild(modalDetails)
+}
 

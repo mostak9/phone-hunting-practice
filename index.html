@@ -5,49 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phone Hunter</title>
     <!-- tailwind & daisyUI cdn -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- custom styles -->
     <style>
-    .bg-primary {
+      .bg-primary {
         background-color: rgba(13, 110, 253, 0.05);
-    }
+      }
+      .specification-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #403F3F;
+      }
+      .specification-detail {
+        font-size: 20px;
+        font-weight: 400;
+        color: #706F6F;
+      }
     </style>
   </head>
   <body>
     <header class="bg-primary">
-        <!-- navigation section -->
-        <section class="max-w-7xl mx-auto py-4">
-            <div class="navbar flex justify-between">
-                <a class="btn btn-ghost normal-case text-2xl font-bold">Phone Hunter</a>
-                <button class="btn btn-primary">Sign Up</button>
-            </div>
-        </section>
+      <!-- navigation section -->
+      <section class="max-w-7xl mx-auto py-4">
+        <div class="navbar flex justify-between">
+          <a class="btn btn-ghost normal-case text-2xl font-bold"
+            >Phone Hunter</a
+          >
+          <button class="btn btn-primary">Sign Up</button>
+        </div>
+      </section>
     </header>
     <main>
-        <!-- search bar section -->
-        <section class="max-w-7xl mx-auto py-4 text-center">
-            <h2 class="text-4xl font-semibold my-4">Search your phone</h2>
-            <div>
-                <input id="inputField" type="text" placeholder="Search your phone" class="input input-bordered w-full max-w-lg my-3" />
-                <button onclick="handleSearch()" class="btn btn-primary ml-3">Search</button>
-            </div>
-        </section>
+      <!-- search bar section -->
+      <section class="max-w-7xl mx-auto py-4 text-center">
+        <h2 class="text-4xl font-semibold my-4">Search your phone</h2>
+        <div>
+          <input
+            id="inputField"
+            type="text"
+            placeholder="Search your phone"
+            class="input input-bordered w-full max-w-lg my-3"
+          />
+          <button onclick="handleSearch()" class="btn btn-primary ml-3">
+            Search
+          </button>
+        </div>
+      </section>
 
-        <!-- search result section -->
-        <section class="max-w-7xl mx-auto py-4">
-            <!-- loading spinner -->
-            <div id="loading-spinner" class="text-center hidden">
-                <span class="loading loading-spinner loading-lg"></span>
+      <!-- search result section -->
+      <section class="max-w-7xl mx-auto py-4">
+        <!-- loading spinner -->
+        <div id="loading-spinner" class="text-center hidden">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+        <!-- all cards -->
+        <div
+          id="card-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        ></div>
+        <div id="show-more-container" class="mt-8 text-center hidden">
+          <button onclick="showMore()" class="btn btn-primary">
+            Show more
+          </button>
+        </div>
+
+        <!-- phone details modal -->
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="show_detail.showModal()">open modal</button> -->
+        <dialog id="show_detail" class="bg-transparent">
+          <form method="dialog" class="modal-box">
+            <div id="modal-container" class="">
+
             </div>
-            <!-- all cards -->
-            <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-               
+            <div class="modal-action">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn bg-[#DC3545] text-white">Close</button>
             </div>
-            <div id="show-more-container" class="mt-8 text-center hidden">
-                <button onclick="showMore()" class="btn btn-primary">Show more</button>
-            </div>
-        </section>
+          </form>
+        </dialog>
+      </section>
     </main>
     <footer></footer>
     <script src="./scripts/phone.js"></script>
